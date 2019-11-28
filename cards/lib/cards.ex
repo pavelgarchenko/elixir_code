@@ -56,9 +56,8 @@ defmodule Cards do
   end
 
   def create_hand(hand_size) do
-    deck = Cards.create_deck
-    deck = Cards.shuffle(deck)
-    {hand, _deck} = Cards.deal(deck, hand_size)
-    hand
+    Cards.create_deck
+    |> Cards.shuffle
+    |> Cards.deal(hand_size)
   end
 end
