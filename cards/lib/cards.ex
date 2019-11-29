@@ -11,14 +11,13 @@ defmodule Cards do
   """
 
   @doc """
-  Create a deck of cards.
+  Returns a list of strings representing a deck of cards.
 
   ## Examples
 
       iex> Cards.create_deck()
       ["Ace of Spades", "Two of Spades", ... , "Five of Hearts"]
   """
-
   def create_deck do
     # in functional programming the value is
     # return w/o assigning it to an isnstance variable
@@ -38,9 +37,19 @@ defmodule Cards do
     Enum.member?(deck, card)
   end
 
+  @doc """
+  Devides a deck into a hand and the remainder of the deck.
+  The `hand_size` argument indicates how many cards should
+  be in the hand.
+
+  ## Examples
+
+      iex> deck = Cards.create_deck
+      iex> {hand, deck} = Cards.deal(deck, 1)
+      iex> hand
+      ["Ace of Spades"]
+  """
   def deal(deck, hand_size) do
-    # Patern Matching is Elixir's replacement
-    # for variable assignment
     Enum.split(deck, hand_size)
   end
 
