@@ -28,6 +28,9 @@ defmodule Cards do
     Enum.shuffle(deck)
   end
 
+  @doc """
+  Determines whether the deck contains the card
+  """
   def contains?(deck, card) do
     Enum.member?(deck, card)
   end
