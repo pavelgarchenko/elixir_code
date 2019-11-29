@@ -1,21 +1,22 @@
 defmodule Cards do
   @moduledoc """
-  Documentation for Cards.
-  """
-
-  @doc """
-  Create deck.
-
-  ## Examples
+    Provides methods for creating and handling a deck of cards
 
       $ iex -S mix
-      iex> Cards.create_deck()
-      ["Ace", "Two", "Three"]
 
       recompile
       'arity' - is a term for number of args
       arity of one - one arg
       or arity one
+  """
+
+  @doc """
+  Create a deck of cards.
+
+  ## Examples
+
+      iex> Cards.create_deck()
+      ["Ace of Spades", "Two of Spades", ... , "Five of Hearts"]
   """
 
   def create_deck do
