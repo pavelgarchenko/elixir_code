@@ -7,6 +7,7 @@ defmodule Identicon do
   def main(input) do
     input
     |> Identicon.hash_input()
+    # |> Identicon.generate_grid()
   end
 
   @doc """
@@ -17,7 +18,9 @@ defmodule Identicon do
       [152, 48, 128, 95, 215, 148, 211, 184, 203, 238, 34, 254, 137, 143, 239, 183]
   """
   def hash_input(input) do
-    :crypto.hash(:md5, input)
+    hex = :crypto.hash(:md5, input)
     |> :binary.bin_to_list
+
+    %Identicon.Image{hex: hex}
   end
 end
