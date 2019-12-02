@@ -12,6 +12,11 @@ defmodule Identicon do
     |> Identicon.filter_odd_squares
     |> Identicon.build_pixel_map
     |> Identicon.draw_image
+    |> Identicon.save_image(input)
+  end
+
+  def save_image(image, input) do
+    File.write("#{input}.png", image)
   end
 
   def draw_image(%Identicon.Image{color: color, pixel_map: pixel_map}) do
@@ -23,6 +28,7 @@ defmodule Identicon do
     end
 
     :egd.render(image)
+    # :egd.save(image, "#{input}.png")
   end
 
   def build_pixel_map(%Identicon.Image{grid: grid} = image) do
