@@ -12,9 +12,14 @@ defmodule Identicon do
   end
 
   def build_grid(%Identicon.Image{hex: hex} = image) do
-    hex
-    |> Enum.chunk(3)
-    |> Enum.map(&mirror_row/1) #use mirror_row that uses one arg
+    grid =
+      hex
+      |> Enum.chunk(3)
+      |> Enum.map(&mirror_row/1) #use mirror_row that uses one arg
+      |> List.flatten
+      |> Enum.with_index
+
+    %Identicon.Image{image | grid: grid}
   end
 
   def mirror_row([first, second | _tail] = row) do
@@ -33,8 +38,9 @@ defmodule Identicon do
       %Identicon.Image{hex: [152, 48, 128, 95, 215, 148, 211, 184, 203, 238, 34, 254, 137, 143, 239, 183]}
   """
   def hash_input(input) do
-    hex = :crypto.hash(:md5, input)
-    |> :binary.bin_to_list
+    hex =
+      :crypto.hash(:md5, input)
+      |> :binary.bin_to_list
 
     %Identicon.Image{hex: hex}
   end
