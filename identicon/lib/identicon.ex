@@ -10,6 +10,21 @@ defmodule Identicon do
     |> Identicon.pick_color
     |> Identicon.build_grid
     |> Identicon.filter_odd_squares
+    |> Identicon.build_pixel_map
+  end
+
+  def build_pixel_map(%Identicon.Image{grid: grid} = image) do
+    width = 50
+    height = 50
+    pixel_map = Enum.map grid, fn {_sq,  idx} ->
+      x1 = rem(idx, 5) * width
+      y1 = div(idx, 5) * height
+      x2 = x1 + width
+      y2 = y1 + height
+      {{x1, y1}, {x2, y2}}
+    end
+
+    %Identicon.Image{image | pixel_map: pixel_map}
   end
 
   def filter_odd_squares(%Identicon.Image{grid: grid} = image) do
