@@ -19,8 +19,8 @@ defmodule Identicon do
     File.write("#{input}.png", image)
   end
 
-  def draw_image(%Identicon.Image{color: color, pixel_map: pixel_map}) do
-    image = :egd.create(250,250)
+  def draw_image(%Identicon.Image{color: color, pixel_map: pixel_map, image_size: {width, height}}) do
+    image = :egd.create(width, height)
     fill = :egd.color(color)
 
     Enum.each pixel_map, fn({start, stop}) ->
@@ -31,9 +31,7 @@ defmodule Identicon do
     # :egd.save(image, "#{input}.png")
   end
 
-  def build_pixel_map(%Identicon.Image{grid: grid} = image) do
-    width = 50
-    height = 50
+  def build_pixel_map(%Identicon.Image{grid: grid, square_size: {width, height}} = image) do
     pixel_map = Enum.map grid, fn {_sq,  idx} ->
       x1 = rem(idx, 5) * width
       y1 = div(idx, 5) * height
