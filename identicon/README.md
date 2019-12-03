@@ -1,6 +1,6 @@
 # Identicon
 
-**TODO: Add description**
+Generate a PNG image 250x250px based on the input string and saves it on disk.
 
 ## Installation
 
@@ -19,3 +19,15 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/identicon](https://hexdocs.pm/identicon).
 
+## Using
+
+```elixir
+Identicon.main("input")
+```
+
+## Testing
+
+```
+cd ./identicon
+mix test
+```
