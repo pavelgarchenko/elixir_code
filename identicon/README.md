@@ -27,7 +27,7 @@ Identicon.main("input")
 
 ## Testing
 
-```
+```bash
 cd ./identicon
 mix test
 ```
