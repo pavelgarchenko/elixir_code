@@ -3,6 +3,8 @@ ul.collection
   = for topic <- @topics do
     li.collection-item
       = topic.title
+      div.right
+        = link "Edit", to: topic_path(@conn, :edit, topic)
 .fixed-action-btn
   = link to: topic_path(@conn, :new), class: "btn-floating btn-large waves-effect waves-light red" do
     i.material-icons add
