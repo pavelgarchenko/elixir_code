@@ -27,5 +27,14 @@ config :logger, :console,
 import_config "#{Mix.env}.exs"
 
 config :phoenix, :template_engines,
-    slim: PhoenixSlime.Engine,
-   slime: PhoenixSlime.Engine1
+  slim: PhoenixSlime.Engine,
+  slime: PhoenixSlime.Engine1
+
+config :ueberauth, Ueberauth,
+  providers: [
+    github: { Ueberauth.Strategy.Github, [default_scope: "user:email"] }
+  ]
+
+config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+  client_id: System.get_env("GITHUB_CLIENT_ID"),
+  client_secret: System.get_env("GITHUB_CLIENT_SECRET")
