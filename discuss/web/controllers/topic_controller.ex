@@ -11,10 +11,9 @@ defmodule Discuss.TopicController do
     render conn, "index.html", topics: topics
   end
 
-  def show(conn, params) do
-    topic = Repo.get!(Topic, params["id"])
-    changeset = Topic.changeset(%Topic{}, %{})
-    render conn, "show.html", changeset: changeset, topic: topic
+  def show(conn, %{"id" => topic_id}) do
+    topic = Repo.get!(Topic, topic_id)
+    render conn, "show.html", topic: topic
   end
 
   def new(conn, _params) do
@@ -60,7 +59,7 @@ defmodule Discuss.TopicController do
 
   def delete(conn, %{"id" => topic_id}) do
     topic = Repo.get!(Topic, topic_id) |> Repo.delete!
-    
+
     conn
     |> put_flash(:info, "Topic Deleted")
     |> redirect(to: topic_path(conn, :index))
