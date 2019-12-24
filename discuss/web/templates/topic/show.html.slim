@@ -1,8 +1,11 @@
-h3= @topic.title
+h5= @topic.title
+=if @conn.assigns.user && @topic.user_id == @conn.assigns.user.id do
+  = link "edit topic", to: topic_path(@conn, :edit, @topic), class: "waves-effect waves-light btn-small blue"
 
-= link "edit", to: topic_path(@conn, :edit, @topic), class: "waves-effect waves-light btn-small blue"
+.input-field
+  textarea.materialize-textarea
+  button.btn  Add Comment
 
-/ window.createSocket(@topic.id)
 javascript:
   document.addEventListener("DOMContentLoaded", () => {
     window.createSocket(<%= @topic.id %>)
