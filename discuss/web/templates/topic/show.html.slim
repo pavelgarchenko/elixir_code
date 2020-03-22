@@ -6,6 +6,8 @@ h5= @topic.title
   textarea.materialize-textarea
   button.btn  Add Comment
 
+  ul.collection
+
 javascript:
   document.addEventListener("DOMContentLoaded", () => {
     window.createSocket(<%= @topic.id %>)
